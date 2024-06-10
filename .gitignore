@@ -1,0 +1,5 @@
+#ignore folder related to venv
+/car-project
+
+#ignore pptx files
+.pptx
