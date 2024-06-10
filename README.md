@@ -1,4 +1,17 @@
 # Car-Prices-Project
+![Static Badge](https://img.shields.io/badge/python-3.10-green)
+
+![Static Badge](https://img.shields.io/badge/lightgbm-4.3.0-blue)
+![Static Badge](https://img.shields.io/badge/pandas-2.2.1-blue)
+![Static Badge](https://img.shields.io/badge/prince-0.13.0-blue)
+![Static Badge](https://img.shields.io/badge/rapidfuzz-3.8.0-blue)
+![Static Badge](https://img.shields.io/badge/scikitlearn-1.4.1-blue)
+![Static Badge](https://img.shields.io/badge/streamlit-1.33-blue)
+![Static Badge](https://img.shields.io/badge/xgboost-2.0.3-blue)
+![Static Badge](https://img.shields.io/badge/ydataprofiling-4.7.0-blue)
+
+
+
 This project has two main objectives: 
   1. Predict car prices based on categorical and continous features given by a public dataset of Kaggle on `car_prices.csv`. It aims to explore pre-processing techniques and predictors comparison, being found on `Projeto_Car_Prices.ipynb`
   2. Give a profiling inteface to discover data easily through streamlit.
@@ -45,7 +58,7 @@ As first groundrules I'll point out some of the project's main premisses.
 
 
 Below is pictured the macro steps used on the project development, aswell.
-1. First, given the CSV file downloaded on Kaggle, there was a cleaning step that concerned on dealing with
+### 1. First, given the CSV file downloaded on Kaggle, there was a cleaning step that concerned on dealing with
     - Data Completeness;
     - Null Handling;
     - Parsing Dates;
@@ -55,7 +68,7 @@ Below is pictured the macro steps used on the project development, aswell.
 ![Structure Diagram](./images/project_macro_structure_diagram.png)
 
 
-2. On a second moment, happend the pre-processing step, divided into two:
+### 2. On a second moment, happend the pre-processing step, divided into two:
     - 2.1. Data Exploration
     - 2.2. Feature Engineering
 
@@ -66,7 +79,7 @@ The main purpose of this step was to understand the data and potential transorma
  - Anova;
  - Others;
 
-3. The third and fourth steps will be divided into two, but both deal with the modeling itself. On third will be explained the models archictectures and fourth the metric evaluations.
+### 3. The third and fourth steps will be divided into two, but both deal with the modeling itself. On third will be explained the models archictectures and fourth the metric evaluations.
 
 As shown in diagram below, 7 simple models were explored in order to get the best prediction. They used mainly boosting ensembles and decision trees to deal with the model prediction, however with different approaches.
 
@@ -83,7 +96,7 @@ As shown in diagram below, 7 simple models were explored in order to get the bes
 
 *obs.:Architectures (2) to (7) uses the same pre-processing steps.
 
-4. Evaluation metrics
+### 4. Evaluation metrics
 
 To compare the model results, besides plotting it, each model was evaluated based on 5 metrics below:
 - MSE : Mean Squared Error
@@ -118,9 +131,9 @@ Besides that there's a page that concentrates on the new possibible explorations
 ## 4. Next Steps
 This section concerns the possible explorations regarding the models and application
 
-1. ![Static Badge](https://img.shields.io/badge/status-ok-green) Explore the Outliers handling based on "There's No Free Lunch" maxima;
-2. ![Static Badge](https://img.shields.io/badge/status-ok-green) Explore different categorical encoding, ideally Target Encoding
-3. ![Static Badge](https://img.shields.io/badge/status-ok-green) Explore other balancment techniques, such as 
+1. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) Explore the Outliers handling based on "There's No Free Lunch" maxima;
+2. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) Explore different categorical encoding, ideally Target Encoding
+3. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) Explore other balancment techniques, such as 
     a. SMOTE
     b. Re-sampling
     c. K-fold
