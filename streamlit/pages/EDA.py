@@ -240,17 +240,19 @@ with st.expander('Validity'):
     column_name = df_p1.columns
     column_type = df_p1[column_name[0]].dtype 
 
-    st.write(column_type)
+    st.write(f"Variable Type: {column_type}")
 
     if column_type == 'object':
-        st.write('Variável Categórica')
+        st.write('Categorical Variable')
 
         #Numero de rótulos e wordcloud sem tratamento
         nunique_labels = len(df_p1.groupby(column_name[0]).count().index)
-        labels = df_p1.groupby(column_name[0]).count().index
-        text = str(df_p1[column_name[0]].values)
-        wordcloud = WordCloud(max_font_size = 50, max_words = 999999, background_color= 'white').generate(text)
+        freqs = df_p1.groupby(column_name[0]).agg({column_name[0]:'count'}).rename(columns={column_name[0]:'frequencies'}).reset_index()
+        dict_freqs = dict(zip(freqs[column_name[0]],freqs['frequencies']))
 
+        wordcloud = WordCloud(collocations=True,background_color= 'black').generate_from_frequencies(dict_freqs)
+            
+        st.write("Not treating lower and upper cases as equals")
         st.write('Number of Labels: ', nunique_labels)
         st.write('Wordcloud of Labels ')
 
@@ -260,12 +262,14 @@ with st.expander('Validity'):
         st.pyplot(fig)
 
         #Numero de rótulos e wordcloud com tratamento de lower
-        adjusted_column_name = str(column_name[0])
+        adjusted_column_name = str(column_name[0]) + '_adjusted'
         nunique_labels = len(df_p2.groupby(adjusted_column_name).count().index)
-        labels = df_p2.groupby(adjusted_column_name).count().index
-        text = str(df_p2[adjusted_column_name].values)
-        wordcloud = WordCloud(max_font_size = 50, max_words = 999999, background_color= 'white').generate(text)
+        freqs = df_p2.groupby(adjusted_column_name).agg({adjusted_column_name:'count'}).rename(columns={adjusted_column_name:'frequencies'}).reset_index()
+        dict_freqs = dict(zip(freqs[adjusted_column_name],freqs['frequencies']))
 
+        wordcloud = WordCloud(collocations=True,background_color= 'black').generate_from_frequencies(dict_freqs)
+
+        st.write("Treating lower and upper cases as equals")
         st.write('Number of Labels: ', nunique_labels)
         st.write('Wordcloud of Labels ')
 
@@ -292,13 +296,26 @@ with st.expander('Validity'):
         df_similarity = df_similarity.merge(df_vec_similarity, left_index= True,right_index=True)
 
         df_similarity_plot = df_similarity.copy()
-        df_similarity_plot = df_similarity_plot[df_similarity_plot['vec_similarity'] >= 75]
-        df_similarity_plot = df_similarity_plot[df_similarity_plot['vec_similarity'] < 100]
 
-        similarity_matrix = df_similarity_plot.pivot(index='vec_i', columns='vec_j',values='vec_similarity')
+        if df_vec_i.vec_i.nunique() > 100:
+            df_similarity_plot = df_similarity_plot[df_similarity_plot['vec_similarity'] >= 75]
+            df_similarity_plot = df_similarity_plot[df_similarity_plot['vec_similarity'] < 100]
+            similarity_matrix = df_similarity_plot.pivot(index='vec_i', columns='vec_j',values='vec_similarity')
+            similarity_matrix = similarity_matrix.fillna(0)
+        else:
+            similarity_matrix = df_similarity_plot.pivot(index='vec_i', columns='vec_j',values='vec_similarity')
+
+
         heatmap = sns.heatmap(similarity_matrix)
 
-        st.pyplot(heatmap.fig)
+        #st.pyplot(heatmap.figure)
+        st.write('Similarity Heatmap')
+        fig = plt.figure(figsize=(14,10))
+        sns.heatmap(similarity_matrix, annot=False)
+        plt.ylabel(adjusted_column_name)
+        plt.xlabel(adjusted_column_name)
+        plt.title('Similarity Heatmap')
+        st.write(fig)
 
         del vec_i,vec_j,vec_similarity
         del df_vec_i,df_vec_j,df_vec_similarity

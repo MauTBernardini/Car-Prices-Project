@@ -143,7 +143,8 @@ This section concerns the possible explorations regarding the models and applica
 5. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) Improve Dimensionality Reduction
 6. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) Hyoerparameter Tuning on GridSearch
 7. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) Model productization (API) and inclusion in the application
-8. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) Fix in the EDA application page bugs
+8. ![Static Badge](https://img.shields.io/badge/status-done-brightgreen) Fix in the EDA application page bugs
 9. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) Dockerization of postgresql to use it
 10. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) DBT and Great Expectations
+11. ![Static Badge](https://img.shields.io/badge/status-TBD-lightgrey) General front improvement, such as overview with Github page
 
