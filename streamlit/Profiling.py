@@ -77,11 +77,10 @@ from ydata_profiling import ProfileReport
 ##################################SIDE BAR DEFINITION#####################################################
 ##########################################################################################################
 
-'''
-Section that customizes the lateral side bar with image and  info about the app
-'''
 
-st.sidebar.image('static/yin-yan-cats.jpg',width=120)
+#Section that customizes the lateral side bar with image and  info about the app
+
+st.sidebar.image('streamlit/static/ying-yang-cats.jpg',width=120)
 
 with st.sidebar.expander('About the app'):
    st.write("""
